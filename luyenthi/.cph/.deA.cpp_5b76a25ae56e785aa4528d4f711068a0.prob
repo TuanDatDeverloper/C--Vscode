@@ -1,0 +1,1 @@
+{"name":"Local: deA","url":"e:\\C++Vscode\\luyenthi\\deA.cpp","tests":[{"id":1728781896212,"input":"7\n4 7\n2 6\n3 4\n1 2\n4 1\n7 5\n2\n4 6\n7 4\n","output":"Yes\nNo\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\C++Vscode\\luyenthi\\deA.cpp","group":"local","local":true}

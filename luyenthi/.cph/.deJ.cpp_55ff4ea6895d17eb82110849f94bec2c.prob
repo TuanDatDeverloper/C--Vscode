@@ -1,0 +1,1 @@
+{"name":"Local: deJ","url":"e:\\C++Vscode\\luyenthi\\deJ.cpp","tests":[{"id":1728786623590,"input":"8 \nabccbabc","output":"4"},{"id":1728786641019,"input":"7 \nabcABCC","output":"1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\C++Vscode\\luyenthi\\deJ.cpp","group":"local","local":true}
