@@ -1,44 +1,50 @@
 #include <iostream>
-#include <unordered_map>
-#include <string>
+#include <cstring>
+
+using namespace std;
 
 int main() {
     int N;
-    std::string S;
-    std::cin >> N >> S;
+    string S;
+    cin >> N >> S;
 
-    int total_beautiful_substrings = 0;
-    const int K = 15; 
+    int result = 0;
+    const int MAX_LENGTH = 100;  // Adjust as needed to balance performance and correctness
 
     for (int i = 0; i < N; ++i) {
-        std::unordered_map<char, int> counts_dict;
-        std::unordered_map<int, int> counts_freq;
-        int unique_letters = 0;
+        int counts[52] = {0};
+        int unique_chars = 0;
 
-        for (int j = i; j < N; ++j) {
+        for (int j = i; j < N && (j - i) < MAX_LENGTH; ++j) {
             char c = S[j];
-            int old_count = counts_dict[c];
-            counts_dict[c] += 1;
-            int new_count = counts_dict[c];
-
-            if (old_count > 0) {
-                counts_freq[old_count]--;
-                if (counts_freq[old_count] == 0) {
-                    counts_freq.erase(old_count);
-                }
+            int idx;
+            if (c >= 'A' && c <= 'Z') {
+                idx = c - 'A';
             } else {
-                unique_letters += 1;
+                idx = c - 'a' + 26;
             }
-            counts_freq[new_count]++;
 
-            if (unique_letters > K) {
-                break;
-            }
-            if (counts_freq.size() == 1) {
-                total_beautiful_substrings += 1;
+            if (counts[idx] == 0) unique_chars++;
+            counts[idx]++;
+
+            if (unique_chars >= 2) {
+                bool all_equal = true;
+                int freq = 0;
+                for (int k = 0; k < 52; ++k) {
+                    if (counts[k] > 0) {
+                        if (freq == 0) freq = counts[k];
+                        else if (counts[k] != freq) {
+                            all_equal = false;
+                            break;
+                        }
+                    }
+                }
+                if (all_equal) result++;
             }
         }
     }
-    std::cout << total_beautiful_substrings << std::endl;
+
+    cout << result << endl;
+
     return 0;
 }
