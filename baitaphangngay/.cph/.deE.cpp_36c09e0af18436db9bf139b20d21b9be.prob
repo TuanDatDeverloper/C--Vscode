@@ -1,0 +1,1 @@
+{"name":"Local: deE","url":"e:\\C++Vscode\\baitaphangngay\\deE.cpp","tests":[{"id":1729398521874,"input":"3 3 2 .#. \n#S. \n..S \n","output":""},{"id":1729399940908,"input":"3 6 3 .S..#. \n..#.#. \nS.#S.. \n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\C++Vscode\\baitaphangngay\\deE.cpp","group":"local","local":true}
