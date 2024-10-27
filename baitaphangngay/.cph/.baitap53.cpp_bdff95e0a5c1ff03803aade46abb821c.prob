@@ -1,0 +1,1 @@
+{"name":"Local: baitap53","url":"e:\\C++Vscode\\baitaphangngay\\baitap53.cpp","tests":[{"id":1729868227402,"input":"2 10\n0 1","output":"10"},{"id":1729874353551,"input":"2 65\n2 4 ","output":"-1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\C++Vscode\\baitaphangngay\\baitap53.cpp","group":"local","local":true}

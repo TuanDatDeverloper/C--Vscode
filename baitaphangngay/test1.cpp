@@ -1,63 +1,88 @@
-#include <bits/stdc++.h>
-using namespace std;
-typedef long long ll;
-const ll INF = 1e18;
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-    int n; 
-    ll w, h; 
-    cin >> n >> w >> h;
-    vector<pair<ll, int>> v(n);
-    ll sum_ci = 0;
-    for(int i = 0; i < n; ++i) {
-        cin >> v[i].first >> v[i].second; 
-        sum_ci += v[i].second;
-    }
-    vector<ll> dp(sum_ci + 1, INF);
-    dp[0] = 0;
+#include <iostream>
+#include <vector>
 
-    for(int i = 0; i < n; i++){
-        ll wi = v[i].first;
-        int ci = v[i].second;
-        for(int s = sum_ci; s >= ci; s--){
-            if(dp[s - ci] + wi < dp[s]){
-                dp[s] = dp[s - ci] + wi;
-            }
+using namespace std;
+
+const int MOD = 1e9 + 7;
+
+class Event {
+public:
+    Event(int l, int r) : l(l - 1), r(r - 1) {}
+
+    void apply(vector<int>& perm) const {
+        int left = l, right = r;
+        while (left < right) {
+            swap(perm[left], perm[right]);
+            ++left;
+            --right;
         }
     }
-    int maxtotal = 0;
-    for(int s = 0; s <= sum_ci; s++){
-        if(dp[s] <= w){
-            maxtotal = max(maxtotal, s);
-        }
+
+private:
+    int l, r;
+};
+
+vector<int> applyEvents(const vector<int>& perm, const vector<Event>& events) {
+    vector<int> newPerm = perm;
+    for (const auto& event : events) {
+        event.apply(newPerm);
     }
-    ll ans = maxtotal;
-    for(int j = 0; j < n; j++){
-        ll wj = v[j].first;
-        int cj = v[j].second;
-        if(wj > h) continue; 
-        vector<ll> dp1(sum_ci + 1, INF);
-        dp1[0] = 0;
-        for(int k = 0; k < n; k++){
-            if(k == j) continue; 
-            ll wk = v[k].first;
-            int ck = v[k].second;
-            for(int s = sum_ci; s >= ck; s--){
-                if(dp1[s - ck] + wk < dp1[s]){
-                    dp1[s] = dp1[s - ck] + wk;
-                }
-            }
-        }
-        int maxj = 0;
-        for(int s = 0; s <= sum_ci; s++){
-            if(dp1[s] <= w){
-                maxj = max(maxj, s);
-            }
-        }
-        ll tv = (ll)maxj + (ll)cj;
-        ans= max(ans, tv);
+    return newPerm;
+}
+
+vector<int> multiply(const vector<int>& a, const vector<int>& b) {
+    int n = a.size();
+    vector<int> result(n);
+    for (int i = 0; i < n; ++i) {
+        result[i] = b[a[i]];
     }
-    cout << ans;
+    return result;
+}
+
+vector<int> power(const vector<int>& perm, long long d) {
+    int n = perm.size();
+    vector<int> result(n);
+    for (int i = 0; i < n; ++i) {
+        result[i] = i;
+    }
+    vector<int> base = perm;
+    while (d > 0) {
+        if (d % 2 == 1) {
+            result = multiply(result, base);
+        }
+        base = multiply(base, base);
+        d /= 2;
+    }
+    return result;
+}
+
+int main() {
+    int n, k;
+    long long d;
+    cin >> n >> k >> d;
+    vector<Event> events;
+    for (int i = 0; i < k; ++i) {
+        int l, r;
+        cin >> l >> r;
+        events.emplace_back(l, r);
+    }
+
+    vector<int> perm(n);
+    for (int i = 0; i < n; ++i) {
+        perm[i] = i;
+    }
+    perm = applyEvents(perm, events);
+    perm = power(perm, d);
+
+    vector<int> cows(n);
+    for (int i = 0; i < n; ++i) {
+        cows[perm[i]] = i + 1;
+    }
+
+    for (int cow : cows) {
+        cout << cow << " ";
+    }
+    cout << endl;
+
     return 0;
 }
