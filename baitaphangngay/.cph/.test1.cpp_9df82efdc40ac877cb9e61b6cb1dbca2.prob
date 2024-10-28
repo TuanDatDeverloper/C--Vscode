@@ -1,0 +1,1 @@
+{"name":"Local: test1","url":"e:\\C++Vscode\\baitaphangngay\\test1.cpp","tests":[{"id":1730050813043,"input":"7\n7\n-6 \n-4\n19\n-22\n51\n-82 ","output":"3 77"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\C++Vscode\\baitaphangngay\\test1.cpp","group":"local","local":true}

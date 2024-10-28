@@ -92,5 +92,5 @@
         "valarray": "cpp",
         "variant": "cpp"
     },
-    "CodeGPT.apiKey": "CodeGPT Plus Beta"
+    "CodeGPT.apiKey": "OpenAI"
 }
