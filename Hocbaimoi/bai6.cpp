@@ -1,24 +1,16 @@
+// Hàm trong ngôn ngữ lập trình C++
 #include <bits/stdc++.h>
 using namespace std;
-int main(){
-    char a;
-    cin >> a;
-    if((a>='a' && a<='z') || (a>='A' && a<='Z')){
-    if((a =='z')||(a=='Z')){
-        cout << "a\n";
-
-    } 
-    else{
-        if(a>='A' && a<='Z'){
-            a+=32;
-        }
-        ++a;
-        cout << a << endl;
-        
-    }
-    }
-    else{ 
-        cout << "Invalid\n";
-    }
-    return 0;
+// Nạp chồng hàm
+int tong(int a, int b){
+  return a + b;
 }
+float tong(float a, float b){
+  return a + b;
+}
+int main(){
+    float n = 100.2,m=200.5;
+    cout << tong(n,m) << endl;
+
+}
+// muốn thay đổi giá trị của biến thì phải truyền tham chiếu bằng cách thêm dấu & trước tên biến
